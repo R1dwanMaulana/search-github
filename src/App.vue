@@ -12,9 +12,10 @@
   </ul>
 </template>
 
-<script>
+<script lang="ts">
+import {defineComponent} from 'vue';
 import {ref, watch, reactive, toRefs} from 'vue';
-export default {
+export default defineComponent({
   name: 'App',
   setup() {
     const name = ref(null);
@@ -39,7 +40,7 @@ export default {
     }
   }
   
-}
+});
 </script>
 
 <style>
