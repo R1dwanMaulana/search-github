@@ -1,4 +1,4 @@
-# vue-tailwind-template
+# App Search Repo Github
 
 ## Project setup
 ```
