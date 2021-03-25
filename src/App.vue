@@ -1,10 +1,23 @@
 <template>
-  <div class = "flex flex-col items-center w-2/12 mx-auto">
+  <div class = "flex flex-col items-center w-8/12 mx-auto">
+  <!-- notification -->
+    <div class="Notification" v-if="notificationMessage">
+      <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md mb-4" role="alert">
+        <div class="flex">
+          <div class="py-1"><svg class="fill-current h-6 w-6 text-teal-500 mr-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M2.93 17.07A10 10 0 1 1 17.07 2.93 10 10 0 0 1 2.93 17.07zm12.73-1.41A8 8 0 1 0 4.34 4.34a8 8 0 0 0 11.32 11.32zM9 11V9h2v6H9v-4zm0-6h2v2H9V5z"/></svg></div>
+          <div>
+            <p class="font-bold text-blue-900">successfully loaded..</p>
+            <p class="text-sm">thank you for using our application.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <h3 class="font-medium text-xl sm:w-56 lg:w-48 md-w-32">Masukkan Username Github Anda!</h3>
-    <input v-model='name' class="ml-4 p-1 border-solid shadow-outline mt-4" placeholder="Github Username">
+    <input v-model="name" class="ml-4 p-1 border-solid shadow-outline mt-4" placeholder="Github Username">
     <button
       class="border-red-700 mt-4 w-32 rounded-md p-2 mb-10 uppercase font-bold bg-indigo-400 shadow-xl"
-      @click='newName = name'
+      @click="submit"
       >Press Me</button>
   </div>
   <ul>
@@ -19,27 +32,26 @@ export default defineComponent({
   name: 'App',
   setup() {
     const name = ref(null);
-    const newName = ref(null);
+    const notificationMessage = ref(false);
     const state = reactive({data: []});
 
-    watch(() => {
-      console.log("newName", newName.value);
-      if(newName.value)
-        fetch(`https://api.github.com/users/${newName.value}/repos`)
-        .then((response) => response.json())
-        .then((data) => {
-          state.data = data;
-          console.log('data',data);
-          name.value = "";
-        });
-    })
+    watch(name, () => notificationMessage.value = false)
+    const submit = () => {
+      fetch(`https://api.github.com/users/${name.value}/repos`)
+      .then((response) => response.json())
+      .then((data) =>  {
+        notificationMessage.value = true;
+        state.data = data;
+        console.log('data', data);
+      });
+    }
     return {
       name,
-      newName,
+      submit,
+      notificationMessage,
       ...toRefs(state)
     }
   }
-  
 });
 </script>
 
