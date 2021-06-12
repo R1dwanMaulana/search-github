@@ -1,5 +1,5 @@
 <template>
-  <div class = "flex flex-col items-center w-8/12 mx-auto">
+  <div class = "flex flex-col items-center w-11/12 mx-auto">
   <!-- notification -->
     <div class="Notification" v-if="notificationMessage">
       <div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md mb-4" role="alert">
@@ -13,16 +13,23 @@
       </div>
     </div>
 
-    <h3 class="font-medium text-xl sm:w-56 lg:w-48 md-w-32">Masukkan Username Github Anda!</h3>
-    <input v-model="name" class="ml-4 p-1 border-solid shadow-outline mt-4" placeholder="Github Username">
+    <h3 class="font-medium text-xl sm:w-56 lg:w-full md-w-32">Masukkan Username Github Anda!</h3>
+    <input v-model="name" class="p-2 mt-4 placeholder-gray-600 border-transparent text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-700 border border-gray-400 focus:border-blue-500 rounded-lg focus:outline-none" placeholder="Github Username">
     <button
-      class="border-red-700 mt-4 w-32 rounded-md p-2 mb-10 uppercase font-bold bg-indigo-400 shadow-xl"
+      class="mt-4 w-32 rounded-lg focus:outline-none p-3 mb-10 uppercase font-bold bg-indigo-400 shadow-md"
       @click="submit"
-      >Press Me</button>
+      >Press Me :)</button>
   </div>
-  <ul>
+  <!-- <ul>
     <li v-for="lib in data" :key="lib.name">{{ lib.name }}</li>
-  </ul>
+  </ul> -->
+  <div v-for="lib in data" :key="lib.name" class="h-auto text-left mx-auto w-10/12 py-5 px-5 m-4 rounded-xl border border-gray-200 bg-white shadow-md">
+    <ul>
+      <li><p><span class="text-blue-700">Author</span>: {{lib.owner.login}}</p></li>
+      <li><p><span class="text-blue-700">Repository:</span> {{lib.name}}</p></li>
+      <li><p><span class="text-blue-700">Languages:</span> {{lib.language}}</p></li>
+    </ul>
+  </div>
 </template>
 
 <script lang="ts">
