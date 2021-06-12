@@ -18,7 +18,7 @@
     <button
       class="mt-4 w-32 rounded-lg focus:outline-none p-3 mb-10 uppercase font-bold bg-indigo-400 shadow-md"
       @click="submit"
-      >Press Me :)</button>
+      >Press Me</button>
   </div>
   <!-- <ul>
     <li v-for="lib in data" :key="lib.name">{{ lib.name }}</li>
