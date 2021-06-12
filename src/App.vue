@@ -14,20 +14,21 @@
     </div>
 
     <h3 class="font-medium text-xl sm:w-56 lg:w-full md-w-32">Masukkan Username Github Anda!</h3>
-    <input v-model="name" class="p-2 mt-4 placeholder-gray-600 border-transparent text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-700 border border-gray-400 focus:border-blue-500 rounded-lg focus:outline-none" placeholder="Github Username">
+    <input v-model="name" class="p-2 mt-4 placeholder-gray-500 border-transparent text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-700 border border-gray-400 focus:border-blue-500 rounded-md focus:outline-none" placeholder="Github Username">
     <button
-      class="mt-4 w-32 rounded-lg focus:outline-none p-3 mb-10 uppercase font-bold bg-indigo-400 shadow-md"
+      class="mt-4 w-32 rounded-lg focus:outline-none shadow-lg hover:shadow-none p-3 mb-10 uppercase font-bold bg-indigo-400 shadow-md"
       @click="submit"
-      >Press Me</button>
+      >Press Me :)</button>
   </div>
   <!-- <ul>
     <li v-for="lib in data" :key="lib.name">{{ lib.name }}</li>
   </ul> -->
   <div v-for="lib in data" :key="lib.name" class="h-auto text-left mx-auto w-10/12 py-5 px-5 m-4 rounded-xl border border-gray-200 bg-white shadow-md">
     <ul>
-      <li><p><span class="text-blue-700">Author</span>: {{lib.owner.login}}</p></li>
-      <li><p><span class="text-blue-700">Repository:</span> {{lib.name}}</p></li>
+      <li><p><span class="text-blue-700">Name:</span> {{lib.name}}</p></li>
+      <li><p><span class="text-blue-700">Description:</span> {{lib.description}}</p></li>
       <li><p><span class="text-blue-700">Languages:</span> {{lib.language}}</p></li>
+      <li><p><span class="text-blue-700">Created:</span> {{lib.created_at}}</p></li>
     </ul>
   </div>
 </template>
